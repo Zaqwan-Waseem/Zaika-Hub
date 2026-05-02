@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "FoodDeliveryApp",
-    "slug": "FoodDeliveryApp",
+    "name": "Zaika Hub",
+    "slug": "Zaika-Hub",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "fooddeliveryapp",
+    "scheme": "zaikahub",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
