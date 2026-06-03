@@ -60,12 +60,6 @@ export default function Index() {
                       <Text className="h1-bold text-white leading-tight">
                         {item.title}
                       </Text>
-                      <Image
-                        source={images.arrowRight}
-                        className="size-10"
-                        resizeMode="contain"
-                        tintColor="#ffffff"
-                      />
                     </View>
                   </Fragment>
                 )}
