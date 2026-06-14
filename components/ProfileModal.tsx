@@ -3,8 +3,8 @@ import { showInputFields } from "@/utils/showInputFields";
 import React from "react";
 import { Modal, ScrollView, Text, View } from "react-native";
 import CustomButton from "./CustomButton";
-
-const AppModal = ({
+import ModalHeaders from "./ModalHeaders";
+const ProfileModal = ({
   visibilty,
   onClose,
 }: {
@@ -24,17 +24,7 @@ const AppModal = ({
           <View className="w-12 h-1.5 bg-gray-300 rounded-full self-center mb-5" />
 
           {/* Header */}
-          <View className="flex-row items-center justify-between mb-6">
-            <Text className="text-2xl font-bold text-primary/90">
-              Edit Profile
-            </Text>
-
-            <CustomButton
-              title="Close"
-              style="bg-primary w-[25%] px-4 py-2 rounded-full"
-              onPress={onClose}
-            />
-          </View>
+          <ModalHeaders title="Edit Your Profile" onClose={onClose} />
 
           {/* Avatar */}
           <View className="items-center mb-6">
@@ -65,4 +55,4 @@ const AppModal = ({
   );
 };
 
-export default AppModal;
+export default ProfileModal;
