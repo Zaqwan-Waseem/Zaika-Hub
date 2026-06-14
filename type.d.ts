@@ -1,3 +1,4 @@
+import React from "react";
 import { Models } from "react-native-appwrite";
 
 export interface MenuItem extends Models.Document {
@@ -54,6 +55,12 @@ interface TabBarIconProps {
   icon: ImageSourcePropType;
   title: string;
 }
+interface TabType {
+  id: number;
+  name: string;
+  title: string;
+  icon?: ImageSourcePropType;
+}
 
 interface PaymentInfoStripeProps {
   label: string;
@@ -63,12 +70,13 @@ interface PaymentInfoStripeProps {
 }
 
 interface CustomButtonProps {
-  onPress?: () => void;
+  onPress?: (value: any) => void;
   title?: string;
   style?: string;
   leftIcon?: React.ReactNode;
   textStyle?: string;
   isLoading?: boolean;
+  onClose?: (value: boolean) => void;
 }
 
 interface CustomHeaderProps {
@@ -79,9 +87,10 @@ interface CustomInputProps {
   placeholder?: string;
   value?: string;
   onChangeText?: (text: string) => void;
-  label: string;
+  label?: string;
   secureTextEntry?: boolean;
   keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
+  leftIcon?: keyof typeof Ionicons.glyphMap;
 }
 
 interface ProfileFieldProps {
@@ -104,4 +113,11 @@ interface SignInParams {
 interface GetMenuParams {
   category: string;
   query: string;
+}
+
+interface inputFieldProps {
+  key: number;
+  label: string;
+  placeHolder: string;
+  icon: string;
 }

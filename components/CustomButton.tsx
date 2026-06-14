@@ -9,6 +9,7 @@ const CustomButton = ({
   textStyle,
   leftIcon,
   isLoading = false,
+  onClose,
 }: CustomButtonProps) => {
   return (
     <TouchableOpacity className={cn("custom-btn", style)} onPress={onPress}>
@@ -17,7 +18,11 @@ const CustomButton = ({
         {isLoading ? (
           <ActivityIndicator size="small" color="white" />
         ) : (
-          <Text className={cn("text-white-100 paragraph-semibold", textStyle)}>
+          <Text
+            className={cn(
+              textStyle ? textStyle : "text-white-100 paragraph-semibold",
+            )}
+          >
             {title}
           </Text>
         )}
