@@ -1,4 +1,4 @@
-import AppModal from "@/components/AppModal";
+import ProfileModal from "@/components/ProfileModal";
 import ProfileFooter from "@/components/ProfileFooter";
 import React, { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
@@ -35,7 +35,7 @@ const ProfileScreen = () => {
     <SafeAreaView className="flex-1 bg-[#FCFBF8]">
       {/* Header */}
 
-      <AppModal
+      <ProfileModal
         visibilty={editProfileModal}
         onClose={() => setEditProfileModal(false)}
       />

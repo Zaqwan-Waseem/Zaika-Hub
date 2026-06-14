@@ -1,7 +1,9 @@
+import CartModal from "@/components/CartModal";
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import { useLocalSearchParams } from "expo-router";
 import React, { useMemo, useState } from "react";
 import {
   FlatList,
@@ -11,7 +13,6 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 const CATEGORIES = [
   { id: "all", label: "All", icon: "restaurant-outline" },
   { id: "burger", label: "Burgers", icon: "fast-food-outline" },
@@ -70,6 +71,11 @@ const ITEMS = [
 export default function Search() {
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<string>("all");
+  const [selectedItem, setSelectedItem] = useState<
+    (typeof ITEMS)[number] | null
+  >(null);
+
+  const { id } = useLocalSearchParams();
 
   const filtered = useMemo(() => {
     return ITEMS.filter((it) => {
@@ -85,6 +91,11 @@ export default function Search() {
         showsVerticalScrollIndicator={false}
         contentContainerClassName="pb-32"
       >
+        <CartModal
+          visible={Boolean(selectedItem)}
+          onClose={() => setSelectedItem(null)}
+          item={selectedItem}
+        />
         {/* Header */}
         <View className="px-5 pt-4 pb-2 flex-row items-center justify-between">
           <View>
@@ -110,7 +121,7 @@ export default function Search() {
         </View>
 
         {/* Search bar */}
-        <View className="px-5 mt-5 flex-row items-center gap-3">
+        <View className="px-5 mt-3 flex-row items-center gap-5 justify-center">
           <View className="flex-1">
             <CustomInput
               placeholder="Search burgers, pizza, drinks…"
@@ -118,8 +129,8 @@ export default function Search() {
               onChangeText={setQuery}
             />
           </View>
-          <TouchableOpacity className="w-14 h-14 rounded-2xl bg-primary items-center justify-center">
-            <Ionicons name="options-outline" size={22} color="#fff" />
+          <TouchableOpacity className="w-14 h-14 rounded-2xl bg-primary items-center justify-center mt-6">
+            <Ionicons name="options-outline" size={20} color="#fff" />
           </TouchableOpacity>
         </View>
 
@@ -179,11 +190,11 @@ export default function Search() {
         {/* Results */}
         <View className="px-5 mt-6 flex-row items-center justify-between">
           <Text className="text-lg font-bold text-dark-100">
-            {filtered.length} result{filtered.length === 1 ? "" : "s"}
+            {filtered.length} {filtered.length === 1 ? "result" : "results"}
           </Text>
-          <TouchableOpacity className="flex-row items-center">
+          <TouchableOpacity className="flex-row items-center gap-1/2">
             <Text className="text-primary font-semibold mr-1">Sort</Text>
-            <Ionicons name="swap-vertical" size={16} color="#E04A1F" />
+            <Ionicons name="swap-vertical" size={16} color="#FE8C00" />
           </TouchableOpacity>
         </View>
 
@@ -197,6 +208,7 @@ export default function Search() {
               activeOpacity={0.9}
               className="rounded-3xl overflow-hidden flex-row items-center p-4"
               style={{ backgroundColor: item.bg }}
+              onPress={() => setSelectedItem(item)}
             >
               <View className="flex-1 pr-3">
                 <Text className="text-white text-xl font-extrabold uppercase">
